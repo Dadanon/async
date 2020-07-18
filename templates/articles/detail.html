@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ article.body }}
+<br>
+<a href="{% url 'all_news' %}">Домой</a>
+{% endblock %}

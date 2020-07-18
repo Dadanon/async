@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table align="center">
+    <td><a href="{% url 'daily_news' %}">Статьи за день</a></td>
+    <td width="100px"></td>
+    <td><a href="{% url 'all_news' %}">Все статьи</a></td>
+    <td width="100px"></td>
+    <td><a href="{% url 'weekly_news' %}">Статьи за неделю</a></td>
+</table>
+<br><br><br>
+{% include 'articles/single.html' with articles=articles %}
+{% endblock %}

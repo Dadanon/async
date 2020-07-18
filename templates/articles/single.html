@@ -1,0 +1,5 @@
+{% for article in articles %}
+<a href="{% url 'detail' article.subsite.subsite_slug article.slug %}">{{ article.title }}</a>
+<br>
+
+{% endfor %}
