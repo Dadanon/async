@@ -11,9 +11,9 @@ class MyUserChangeForm(UserChangeForm):
 
 
 class MyUserCreationForm(UserCreationForm):
-    error_messages = UserCreationForm.error_messages.update({
+    error_messages = {
         'duplicate_username': 'Это имя пользователя уже занято',
-    })
+    }
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
@@ -26,7 +26,6 @@ class MyUserCreationForm(UserCreationForm):
         except CustomUser.DoesNotExist:
             return username
         raise forms.ValidationError(self.error_messages['duplicate_username'])
-
 
 
 @admin.register(CustomUser)

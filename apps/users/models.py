@@ -5,6 +5,10 @@ from django.contrib.auth.models import AbstractUser
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)
 
+    class Meta:
+        verbose_name = 'пользователь'
+        verbose_name_plural = 'пользователи'
+
     def __str__(self):
         return self.username
 
