@@ -30,6 +30,13 @@ class ArticleQuerySet(models.query.QuerySet):
         qs = self.get_published()
         return qs
 
+    def get_by_user(self, author):
+        qs = self.get_published()
+        if author:
+            qs = qs.filter(author=author)
+            return qs
+
+
 
 class Article(models.Model):
     DRAFT = 'D'

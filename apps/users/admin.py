@@ -11,12 +11,10 @@ class MyUserChangeForm(UserChangeForm):
 
 
 class MyUserCreationForm(UserCreationForm):
-    error_messages = {
-        'duplicate_username': 'Это имя пользователя уже занято',
-    }
-
     class Meta(UserCreationForm.Meta):
         model = CustomUser
+    UserCreationForm.error_messages['duplicate_username'] = 'Это имя пользователя уже занято'
+    error_messages = UserCreationForm.error_messages
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -32,7 +30,15 @@ class MyUserCreationForm(UserCreationForm):
 class MyUserAdmin(AuthUserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
-    list_display = ('username', 'age', )
-    search_fields = ('id', 'age', 'email', )
+    fieldsets = AuthUserAdmin.fieldsets + (
+        ('Данные пользователя', {
+            'fields': ('avatar', )
+        }),
+    )
+    list_display = ('username', 'age')
+    search_fields = ['id', 'age', 'email']
+
+
+
 
 # Register your models here.
